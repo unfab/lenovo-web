@@ -58,18 +58,7 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
     
-    const accessKey = "YOUR_WEB3FORMS_ACCESS_KEY_HERE";
-    
-    if (accessKey === "YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
-      setTimeout(() => {
-        setFormData({ name: '', email: '', message: '', honeypot: '' });
-        setIsSubmitting(false);
-        setShowSuccess(true);
-        setLastSubmitTime(Date.now());
-        setTimeout(() => setShowSuccess(false), 5000);
-      }, 1500);
-      return;
-    }
+    const accessKey = "ba5e458b-cc88-439b-8390-d3bf94abbaef";
 
     const payload = {
       access_key: accessKey,
