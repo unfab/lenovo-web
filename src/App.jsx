@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { ArrowRight, PieChart, Users, MapPin, Star, Mail, Phone, Loader2, CheckCircle2, Briefcase, Globe, ShieldCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,6 +10,7 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [formError, setFormError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
   
   // Varnostni form state
   const [formData, setFormData] = useState({
@@ -94,17 +96,49 @@ function App() {
 
     setIsSubmitting(true);
     
-    // Simulacija omrežnega zahtevka z varnostno obdelavo
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '', honeypot: '' });
-      setIsSubmitting(false);
-      setShowSuccess(true);
-      setLastSubmitTime(Date.now());
-      
+    // Web3Forms integration with Turnstile
+    const accessKey = "YOUR_WEB3FORMS_ACCESS_KEY_HERE"; // User needs to replace this
+    
+    // Fallback simulacija, dokler niso vneseni pravi API ključi
+    if (accessKey === "YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
       setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
-    }, 1500);
+        setFormData({ name: '', email: '', message: '', honeypot: '' });
+        setIsSubmitting(false);
+        setShowSuccess(true);
+        setLastSubmitTime(Date.now());
+        setTimeout(() => setShowSuccess(false), 5000);
+      }, 1500);
+      return;
+    }
+
+    const payload = {
+      access_key: accessKey,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      "cf-turnstile-response": turnstileToken
+    };
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status === 200) {
+        setFormData({ name: '', email: '', message: '', honeypot: '' });
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        setFormError(json.message || "Prišlo je do napake. Preverite API ključe.");
+      }
+    })
+    .catch(() => setFormError("Omrežna napaka pri pošiljanju."))
+    .finally(() => {
+      setIsSubmitting(false);
+      setLastSubmitTime(Date.now());
+    });
   };
 
   const partners = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -445,6 +479,14 @@ function App() {
                     {formError}
                   </div>
                 )}
+
+                <div className="flex justify-center my-4">
+                  <Turnstile 
+                    siteKey="1x00000000000000000000AA" // Testni Cloudflare ključ (vedno passe) - zamenjajte z vašim pravim
+                    onSuccess={(token) => setTurnstileToken(token)}
+                    options={{ theme: 'light' }}
+                  />
+                </div>
 
                 <button 
                   type="submit" 
