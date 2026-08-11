@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --font-lexend: "Lexend", sans-serif;
+  --color-brand-dark: #0A192F;
+  --color-brand-light: #112240;
+  --color-brand-accent: #45bba5;
+  --color-brand-accentHover: #389e8b;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-lexend);
+    @apply bg-gray-50 text-gray-800 antialiased overflow-x-hidden;
+  }
+}
+
+.marquee-container { 
+    overflow: hidden; 
+    white-space: nowrap; 
+    width: 100%; 
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.marquee-track { display: flex; width: max-content; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
