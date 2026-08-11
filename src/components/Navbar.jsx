@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const langDropdownRef = useRef(null);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    setIsLangOpen(false);
     setIsOpen(false);
   };
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const currentLang = i18n.language.toUpperCase();
+  const languages = [
+    { code: 'sl', label: 'Slovenščina' },
+    { code: 'hr', label: 'Hrvatski' },
+    { code: 'it', label: 'Italiano' }
+  ];
 
   return (
     <nav className="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
@@ -32,13 +55,32 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-6 nav-item">
-            {/* Language Switcher */}
-            <div className="flex items-center gap-2 text-sm font-medium text-gray-400">
-              <button onClick={() => changeLanguage('sl')} className={`hover:text-brand-accent transition-colors ${i18n.language === 'sl' ? 'text-brand-dark' : ''}`}>SL</button>
-              <span>|</span>
-              <button onClick={() => changeLanguage('hr')} className={`hover:text-brand-accent transition-colors ${i18n.language === 'hr' ? 'text-brand-dark' : ''}`}>HR</button>
-              <span>|</span>
-              <button onClick={() => changeLanguage('it')} className={`hover:text-brand-accent transition-colors ${i18n.language === 'it' ? 'text-brand-dark' : ''}`}>IT</button>
+            {/* Language Switcher Dropdown */}
+            <div className="relative" ref={langDropdownRef}>
+              <button 
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-1 text-sm font-bold text-gray-700 hover:text-brand-accent transition-colors px-2 py-1 rounded"
+              >
+                {currentLang} <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'transform rotate-180' : ''}`} />
+              </button>
+              
+              {isLangOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-[#f6f2ef] border border-gray-100 rounded-lg shadow-xl overflow-hidden py-2 z-50">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => changeLanguage(lang.code)}
+                      className={`block w-full text-left px-4 py-2.5 text-sm font-medium transition-colors ${
+                        i18n.language === lang.code 
+                          ? 'bg-[#eeded5] text-gray-900' 
+                          : 'text-gray-600 hover:bg-[#eeded5]/50 hover:text-gray-900'
+                      }`}
+                    >
+                      {lang.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* CTA Desktop */}
@@ -67,12 +109,25 @@ export default function Navbar() {
             <a href="/#storitve" onClick={() => setIsOpen(false)} className="block px-3 py-4 rounded-md text-base font-medium text-gray-900 hover:text-brand-accent hover:bg-gray-50 border-b border-gray-100">{t('navbar.services')}</a>
             <a href="/#reference" onClick={() => setIsOpen(false)} className="block px-3 py-4 rounded-md text-base font-medium text-gray-900 hover:text-brand-accent hover:bg-gray-50 border-b border-gray-100">{t('navbar.references')}</a>
             <a href="/#o-nas" onClick={() => setIsOpen(false)} className="block px-3 py-4 rounded-md text-base font-medium text-gray-900 hover:text-brand-accent hover:bg-gray-50 border-b border-gray-100">{t('navbar.about')}</a>
-            <a href="/#kontakt" onClick={() => setIsOpen(false)} className="block px-3 py-4 rounded-md text-base font-medium text-brand-accent hover:bg-gray-50 font-bold">{t('navbar.contact')}</a>
+            <a href="/#kontakt" onClick={() => setIsOpen(false)} className="block px-3 py-4 rounded-md text-base font-medium text-brand-accent hover:bg-gray-50 font-bold border-b border-gray-100">{t('navbar.contact')}</a>
             
-            <div className="flex items-center gap-4 px-3 py-4 mt-2 border-t border-gray-100 text-base font-medium text-gray-600">
-              <button onClick={() => changeLanguage('sl')} className={`hover:text-brand-accent px-2 py-1 rounded ${i18n.language === 'sl' ? 'bg-gray-100 text-brand-dark' : ''}`}>SL</button>
-              <button onClick={() => changeLanguage('hr')} className={`hover:text-brand-accent px-2 py-1 rounded ${i18n.language === 'hr' ? 'bg-gray-100 text-brand-dark' : ''}`}>HR</button>
-              <button onClick={() => changeLanguage('it')} className={`hover:text-brand-accent px-2 py-1 rounded ${i18n.language === 'it' ? 'bg-gray-100 text-brand-dark' : ''}`}>IT</button>
+            <div className="px-3 py-4">
+              <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Izberite jezik</p>
+              <div className="flex flex-col space-y-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => changeLanguage(lang.code)}
+                    className={`text-left px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                      i18n.language === lang.code 
+                        ? 'bg-[#eeded5] text-gray-900' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-transparent'
+                    }`}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

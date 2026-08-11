@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { Mail, MapPin, ShieldCheck, Loader2 } from 'lucide-react';
-import { Turnstile } from '@marsidev/react-turnstile';
 import { useTranslation } from 'react-i18next';
 
 export default function ContactForm() {
@@ -8,7 +7,6 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [formError, setFormError] = useState('');
-  const [turnstileToken, setTurnstileToken] = useState('');
   
   const [formData, setFormData] = useState({
     name: '',
@@ -77,8 +75,7 @@ export default function ContactForm() {
       access_key: accessKey,
       name: formData.name,
       email: formData.email,
-      message: formData.message,
-      "cf-turnstile-response": turnstileToken
+      message: formData.message
     };
 
     fetch("https://api.web3forms.com/submit", {
@@ -220,14 +217,6 @@ export default function ContactForm() {
                   {formError}
                 </div>
               )}
-
-              <div className="flex justify-center my-4">
-                <Turnstile 
-                  siteKey="1x00000000000000000000AA"
-                  onSuccess={(token) => setTurnstileToken(token)}
-                  options={{ theme: 'light' }}
-                />
-              </div>
 
               <button 
                 type="submit" 
