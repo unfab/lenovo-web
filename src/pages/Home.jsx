@@ -8,6 +8,8 @@ import Hero from '../components/Hero';
 import TrustLogos from '../components/TrustLogos';
 import About from '../components/About';
 import Services from '../components/Services';
+import News from '../components/News';
+import FAQ from '../components/FAQ';
 import ContactForm from '../components/ContactForm';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -96,6 +98,8 @@ export default function Home() {
       <TrustLogos />
       <About />
       <Services />
+      <News />
+      <FAQ />
       <ContactForm />
     </div>
   );

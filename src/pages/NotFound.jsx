@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from 'react-i18next';
 
 export default function NotFound() {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
 
   useGSAP(() => {
@@ -31,10 +33,10 @@ export default function NotFound() {
             404
           </h1>
           <p className="text-xl text-gray-600 font-medium">
-            Stran ne obstaja
+            {t('notfound.title')}
           </p>
           <p className="text-base text-gray-500">
-            Žal strani, ki jo iščete, nismo našli. Morda je bila premaknjena ali pa sploh nikoli ni obstajala.
+            {t('notfound.desc')}
           </p>
         </div>
         
@@ -44,7 +46,7 @@ export default function NotFound() {
             className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 border border-transparent rounded-md text-lg font-medium text-white bg-brand-dark hover:bg-brand-light transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark shadow-md"
           >
             <ArrowLeft className="mr-2 w-5 h-5" />
-            Nazaj na prvo stran
+            {t('notfound.back')}
           </Link>
         </div>
       </div>

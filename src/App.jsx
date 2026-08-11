@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/zasebnost" element={<PrivacyPolicy />} />
+            <Route path="/pogoji" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Mail, MapPin, ShieldCheck, Loader2 } from 'lucide-react';
 import { Turnstile } from '@marsidev/react-turnstile';
+import { useTranslation } from 'react-i18next';
 
 export default function ContactForm() {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [formError, setFormError] = useState('');
@@ -20,7 +22,6 @@ export default function ContactForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Basic sanitization
     const sanitizedValue = value.replace(/[<>]/g, '');
     setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
   };
@@ -34,26 +35,26 @@ export default function ContactForm() {
     e.preventDefault();
     setFormError('');
     
-    if (formData.honeypot) return; // Silent fail for bots
+    if (formData.honeypot) return; 
     
     if (formData.name.length < 2 || formData.name.length > 100) {
-      setFormError('Ime mora vsebovati med 2 in 100 znakov.');
+      setFormError(t('contact.form.errorName'));
       return;
     }
     if (formData.message.length < 10 || formData.message.length > 2000) {
-      setFormError('Sporočilo mora vsebovati med 10 in 2000 znakov.');
+      setFormError(t('contact.form.errorMessage'));
       return;
     }
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setFormError('Prosimo vnesite veljaven e-poštni naslov.');
+      setFormError(t('contact.form.errorEmail'));
       return;
     }
 
     const now = Date.now();
     if (now - lastSubmitTime < 30000) {
-      setFormError('Prosimo počakajte nekaj časa pred ponovnim pošiljanjem (anti-spam zaščita).');
+      setFormError(t('contact.form.errorSpam'));
       return;
     }
 
@@ -92,10 +93,10 @@ export default function ContactForm() {
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 5000);
       } else {
-        setFormError(json.message || "Prišlo je do napake. Preverite API ključe.");
+        setFormError(json.message || "Error");
       }
     })
-    .catch(() => setFormError("Omrežna napaka pri pošiljanju."))
+    .catch(() => setFormError("Network Error"))
     .finally(() => {
       setIsSubmitting(false);
       setLastSubmitTime(Date.now());
@@ -108,9 +109,9 @@ export default function ContactForm() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Info */}
           <div className="flex flex-col justify-center contact-info">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Stopite v stik z nami</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">{t('contact.title')}</h2>
             <p className="text-lg text-gray-600 mb-10 leading-relaxed">
-              Z več kot 15 letnimi izkušnjami in več kot 150 strankami smo prava izbira. Pogovorimo se o tem, kako lahko razbremenimo vašo administracijo.
+              {t('contact.desc')}
             </p>
             
             <div className="space-y-6">
@@ -119,7 +120,7 @@ export default function ContactForm() {
                   <Mail className="text-brand-dark w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">E-pošta</p>
+                  <p className="text-sm text-gray-500 font-medium">{t('contact.email')}</p>
                   <a href="mailto:info@lenova.si" className="text-lg font-bold text-gray-900 hover:text-brand-accent transition-colors flex items-center">info@lenova.si</a>
                 </div>
               </div>
@@ -129,9 +130,8 @@ export default function ContactForm() {
                   <MapPin className="text-brand-dark w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Sedež podjetja</p>
-                  <p className="text-lg font-bold text-gray-900 flex items-center">Ankaranska cesta 5c</p>
-                  <p className="text-sm text-gray-500">6000 Koper, Lenova d.o.o.</p>
+                  <p className="text-sm text-gray-500 font-medium">{t('contact.addressTitle')}</p>
+                  <p className="text-lg font-bold text-gray-900 flex items-center mt-1" dangerouslySetInnerHTML={{ __html: t('contact.addressLines') }}></p>
                 </div>
               </div>
 
@@ -140,8 +140,8 @@ export default function ContactForm() {
                   <MapPin className="text-brand-accent w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Poslovalnica</p>
-                  <p className="text-sm text-gray-600">Umag, Hrvaška</p>
+                  <p className="text-sm text-gray-500 font-medium">{t('contact.branchTitle')}</p>
+                  <p className="text-sm text-gray-600 mt-1">{t('contact.branchLines')}</p>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function ContactForm() {
           {/* Form */}
           <div className="bg-gray-50 p-8 sm:p-10 rounded-2xl border border-gray-100 shadow-lg contact-form-wrap relative">
             <div className="absolute top-4 right-4 flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded text-xs font-medium border border-green-200">
-              <ShieldCheck className="w-3 h-3" /> Zavarovano
+              <ShieldCheck className="w-3 h-3" /> {t('contact.form.secure')}
             </div>
 
             <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-6 mt-4">
@@ -166,7 +166,7 @@ export default function ContactForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Ime in priimek / Podjetje</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.name')}</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -181,7 +181,7 @@ export default function ContactForm() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">E-poštni naslov</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.email')}</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -197,7 +197,7 @@ export default function ContactForm() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Vaše sporočilo ali povpraševanje</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.message')}</label>
                 <textarea 
                   id="message" 
                   name="message"
@@ -211,7 +211,7 @@ export default function ContactForm() {
                   className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-accent focus:ring focus:ring-brand-accent focus:ring-opacity-50 transition-colors bg-white resize-none outline-none"
                 ></textarea>
                 <div className="text-right text-xs text-gray-400 mt-1">
-                  {formData.message.length}/2000 znakov
+                  {formData.message.length}/2000
                 </div>
               </div>
 
@@ -235,13 +235,13 @@ export default function ContactForm() {
                 className="w-full min-h-[48px] flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-brand-dark hover:bg-brand-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark transition-transform transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
-                  <><Loader2 className="animate-spin mr-2 w-5 h-5" /> Pošiljam varno...</>
-                ) : 'Pošljite povpraševanje'}
+                  <><Loader2 className="animate-spin mr-2 w-5 h-5" /> {t('contact.form.sending')}</>
+                ) : t('contact.form.button')}
               </button>
 
               {showSuccess && (
                 <div className="mt-4 p-4 bg-green-50 text-green-800 rounded-md border border-green-200 text-sm text-center font-medium">
-                  Vaše sporočilo je bilo uspešno in varno poslano. Kmalu vas bomo kontaktirali.
+                  {t('contact.form.success')}
                 </div>
               )}
             </form>

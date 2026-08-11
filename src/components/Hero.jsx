@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section id="hero" className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 bg-brand-dark overflow-hidden">
       {/* Abstract Background Vectors */}
@@ -15,31 +18,31 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="max-w-3xl">
             <h1 className="hero-anim text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
-              Računovodski servis Koper
+              {t('hero.title')}
             </h1>
             <p className="hero-anim text-xl sm:text-2xl text-gray-200 font-light mb-6 subheadline">
-              Zanesljivo računovodstvo, ki <span className="text-brand-accent font-medium">razume vaš posel.</span>
+              {t('hero.subtitle1')} <span className="text-brand-accent font-medium">{t('hero.subtitleHighlight')}</span>
             </p>
             
             <div className="hero-anim flex flex-wrap gap-4 mb-8">
               {/* Huge stats highlighting 15 years and 150+ clients */}
               <div className="bg-brand-accent/10 border border-brand-accent/30 rounded-lg px-6 py-4 flex items-center gap-4">
                 <div className="text-brand-accent text-4xl font-extrabold tracking-tight">15+</div>
-                <div className="text-white text-sm font-bold uppercase tracking-widest leading-tight">Let<br/>Izkušenj</div>
+                <div className="text-white text-sm font-bold uppercase tracking-widest leading-tight" dangerouslySetInnerHTML={{ __html: t('hero.stats.years') }}></div>
               </div>
               <div className="bg-brand-accent/10 border border-brand-accent/30 rounded-lg px-6 py-4 flex items-center gap-4">
                 <div className="text-brand-accent text-4xl font-extrabold tracking-tight">150+</div>
-                <div className="text-white text-sm font-bold uppercase tracking-widest leading-tight">Zadovoljnih<br/>Strank</div>
+                <div className="text-white text-sm font-bold uppercase tracking-widest leading-tight" dangerouslySetInnerHTML={{ __html: t('hero.stats.clients') }}></div>
               </div>
             </div>
 
             <p className="hero-anim text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl">
-              Z našim podjetjem v Kopru ponujamo strokovno vodenje poslovnih knjig in davčno svetovanje na celotni Obali in širše. Več kot 15 let zanesljive podpore za s.p. in d.o.o.
+              {t('hero.desc')}
             </p>
 
             <div className="hero-anim flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <a href="/#storitve" className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 border border-transparent rounded-md text-lg font-medium text-brand-dark bg-brand-accent hover:bg-brand-accentHover transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-accent shadow-[0_0_20px_rgba(69,187,165,0.3)]">
-                Spoznajte naše storitve
+                {t('hero.cta')}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
