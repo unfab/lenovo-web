@@ -151,7 +151,7 @@ function App() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group nav-item" onClick={() => window.scrollTo(0,0)}>
-              <span className="text-brand-dark font-extrabold text-3xl tracking-tight uppercase">Lenova</span>
+              <span className="text-brand-dark font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase">Lenova</span>
             </div>
             
             {/* Desktop Menu */}
