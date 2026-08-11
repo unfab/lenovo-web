@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
 
 // Pages
 import Home from './pages/Home';
@@ -27,6 +28,7 @@ function App() {
         </main>
 
         <Footer />
+        <CookieBanner />
       </div>
     </Router>
   );

@@ -100,6 +100,130 @@ const resources = {
         privacy: "Pravilnik o zasebnosti",
         terms: "Pogoji poslovanja",
         rights: "Vse pravice pridržane."
+      },
+      cookies: {
+        title: "Spoštujemo vašo zasebnost",
+        desc: "Uporabljamo piškotke za izboljšanje vaše izkušnje in analitiko. Z nadaljnjo uporabo soglašate z našo",
+        policy: "politiko zasebnosti",
+        accept: "Sprejmi vse",
+        decline: "Zavrni nebistvene"
+      },
+      notfound: {
+        title: "Stran ne obstaja",
+        desc: "Žal strani, ki jo iščete, nismo našli. Morda je bila premaknjena ali pa sploh nikoli ni obstajala.",
+        back: "Nazaj na prvo stran"
+      }
+    }
+  },
+  en: {
+    translation: {
+      navbar: {
+        services: "Services",
+        references: "References",
+        about: "About Us",
+        contact: "Contact",
+        cta: "Get in Touch"
+      },
+      hero: {
+        title: "Accounting Services Koper",
+        subtitle1: "Reliable accounting that ",
+        subtitleHighlight: "understands your business.",
+        stats: {
+          years: "Years of<br/>Experience",
+          clients: "Satisfied<br/>Clients"
+        },
+        desc: "Based in Koper, we offer professional bookkeeping and tax advisory services across the entire Coastal region and beyond. Over 15 years of reliable support for sole traders and companies.",
+        cta: "Explore our services"
+      },
+      trust: {
+        title: "Trusted by 150+ clients"
+      },
+      about: {
+        subtitle: "About Us",
+        title: "Lenova Accounting has all the qualities of a great accounting firm:",
+        desc: "We believe in expertise and order. Our goal is to provide the highest level of service and ensure the safety and growth of your business. These are the principles we follow:",
+        list: [
+          "We are financially stable and successful",
+          "We serve a wide range of clients",
+          "We provide the most comprehensive and demanding accounting services",
+          "Our staff is professional and continuously trained",
+          "We hold professional liability insurance to protect our clients",
+          "We treat every client individually and keep them informed of regulatory changes"
+        ]
+      },
+      services: {
+        subtitle: "Our Services",
+        title: "Everything you need for worry-free business",
+        desc: "We offer professional services that let you focus on growing your business while we take care of the rest.",
+        s1: {
+          title: "Accounting",
+          desc: "Accurate bookkeeping for sole traders and companies. Preparation of annual reports, VAT returns and strategic tax advisory tailored to your business.",
+          l1: "Tax optimisation",
+          l2: "Digital accounting"
+        },
+        s2: {
+          title: "HR Services",
+          desc: "Comprehensive HR administration management. Payroll processing, employment contracts, employee registration and travel expense management.",
+          l1: "Payroll & contributions",
+          l2: "Travel expense management"
+        },
+        s3: {
+          title: "Advisory & Company Formation",
+          desc: "In addition to Slovenia, through our office in <strong class='font-bold'>Umag</strong> we also offer business advisory and virtual office services in Croatia.",
+          l1: "Company formation (SLO & HR)",
+          l2: "Virtual office (Also in Umag)"
+        }
+      },
+      contact: {
+        title: "Get in touch with us",
+        desc: "With over 15 years of experience and more than 150 clients, we are the right choice. Let's talk about how we can simplify your administration.",
+        email: "Email",
+        addressTitle: "Head office",
+        addressLines: "Ankaranska cesta 5c<br/>6000 Koper, Lenova d.o.o.",
+        branchTitle: "Branch office",
+        branchLines: "Umag, Croatia",
+        form: {
+          secure: "Secured",
+          name: "Full name / Company",
+          email: "Email address",
+          message: "Your message or enquiry",
+          button: "Send enquiry",
+          sending: "Sending securely...",
+          success: "Your message has been sent successfully. We will get back to you shortly.",
+          errorName: "Name must be between 2 and 100 characters.",
+          errorMessage: "Message must be between 10 and 2000 characters.",
+          errorEmail: "Please enter a valid email address.",
+          errorSpam: "Please wait before sending another message (anti-spam protection)."
+        }
+      },
+      footer: {
+        desc: "A reliable partner with over 15 years of experience and more than 150 satisfied clients.",
+        links: "Quick links",
+        contact: "Contact & Location",
+        hours: "Opening hours",
+        hoursLines: {
+          w: "Monday – Friday",
+          wt: "09:00 – 15:00",
+          e: "Saturday, Sunday",
+          et: "Closed"
+        },
+        data: "Company details",
+        bank: "Bank accounts",
+        privacy: "Privacy Policy",
+        terms: "Terms of Service",
+        rights: "All rights reserved."
+      },
+      cookies: {
+        title: "We respect your privacy",
+        desc: "We use cookies to improve your experience and for analytics. By continuing to use this site, you agree to our",
+        policy: "privacy policy",
+        accept: "Accept all",
+        decline: "Decline non-essential"
+      },
+      notfound: {
+        title: "Page not found",
+        desc: "Sorry, the page you are looking for does not exist. It may have been moved or never existed.",
+        back: "Back to home"
       }
     }
   },
@@ -200,6 +324,18 @@ const resources = {
         privacy: "Pravila privatnosti",
         terms: "Uvjeti poslovanja",
         rights: "Sva prava pridržana."
+      },
+      cookies: {
+        title: "Poštujemo vašu privatnost",
+        desc: "Koristimo kolačiće za poboljšanje vašeg iskustva i analitiku. Nastavkom korištenja pristajete na našu",
+        policy: "politiku privatnosti",
+        accept: "Prihvati sve",
+        decline: "Odbij nebitne"
+      },
+      notfound: {
+        title: "Stranica ne postoji",
+        desc: "Nažalost, stranica koju tražite nije pronađena. Možda je premještena ili nikada nije postojala.",
+        back: "Natrag na početnu"
       }
     }
   },
@@ -300,6 +436,18 @@ const resources = {
         privacy: "Informativa sulla privacy",
         terms: "Termini e Condizioni",
         rights: "Tutti i diritti riservati."
+      },
+      cookies: {
+        title: "Rispettiamo la tua privacy",
+        desc: "Utilizziamo i cookie per migliorare la tua esperienza e per analisi. Continuando a usare il sito, accetti la nostra",
+        policy: "informativa sulla privacy",
+        accept: "Accetta tutti",
+        decline: "Rifiuta non essenziali"
+      },
+      notfound: {
+        title: "Pagina non trovata",
+        desc: "La pagina che stai cercando non esiste. Potrebbe essere stata spostata o non è mai esistita.",
+        back: "Torna alla home"
       }
     }
   }
@@ -309,10 +457,10 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "sl", // default language
+    lng: "sl",
     fallbackLng: "sl",
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false
     }
   });
 

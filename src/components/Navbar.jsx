@@ -31,6 +31,7 @@ export default function Navbar() {
   const currentLang = i18n.language.toUpperCase();
   const languages = [
     { code: 'sl', label: 'Slovenščina' },
+    { code: 'en', label: 'English' },
     { code: 'hr', label: 'Hrvatski' },
     { code: 'it', label: 'Italiano' }
   ];
@@ -65,15 +66,15 @@ export default function Navbar() {
               </button>
               
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-[#f6f2ef] border border-gray-100 rounded-lg shadow-xl overflow-hidden py-2 z-50">
+                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-100 rounded-lg shadow-xl overflow-hidden py-2 z-50">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => changeLanguage(lang.code)}
                       className={`block w-full text-left px-4 py-2.5 text-sm font-medium transition-colors ${
                         i18n.language === lang.code 
-                          ? 'bg-[#eeded5] text-gray-900' 
-                          : 'text-gray-600 hover:bg-[#eeded5]/50 hover:text-gray-900'
+                          ? 'bg-gray-50 text-brand-accent font-semibold' 
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-brand-dark'
                       }`}
                     >
                       {lang.label}
@@ -120,8 +121,8 @@ export default function Navbar() {
                     onClick={() => changeLanguage(lang.code)}
                     className={`text-left px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                       i18n.language === lang.code 
-                        ? 'bg-[#eeded5] text-gray-900' 
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-transparent'
+                        ? 'bg-gray-50 text-brand-accent font-semibold' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-brand-dark border border-transparent'
                     }`}
                   >
                     {lang.label}

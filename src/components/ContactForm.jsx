@@ -58,7 +58,8 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
     
-    const accessKey = "ba5e458b-cc88-439b-8390-d3bf94abbaef";
+    // TUKAJ VNESITE KLJUC OD STRANKE (ko ga pridobi preko web3forms)
+    const accessKey = "TUKAJ_VNESITE_KLJUC_OD_STRANKE";
 
     const payload = {
       access_key: accessKey,
