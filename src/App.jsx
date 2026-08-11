@@ -149,9 +149,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-3xl">
-              <h1 className="hero-anim text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                Zanesljivo računovodstvo, ki <span className="text-brand-accent">razume vaš posel.</span>
+              <h1 className="hero-anim text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
+                Računovodski servis Koper
               </h1>
+              <p className="hero-anim text-xl sm:text-2xl text-gray-200 font-light mb-6 subheadline">
+                Zanesljivo računovodstvo, ki <span className="text-brand-accent font-medium">razume vaš posel.</span>
+              </p>
               
               <div className="hero-anim flex flex-wrap gap-4 mb-8">
                 {/* Huge stats highlighting 15 years and 150+ clients */}
@@ -530,6 +533,30 @@ function App() {
                   <span className="text-brand-accent text-sm font-medium">Zaprto</span>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* Company Data */}
+          <div className="border-t border-gray-800 pt-8 pb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 footer-block">
+            <div>
+              <h5 className="text-white text-xs font-bold uppercase tracking-wider mb-3">Podatki podjetja</h5>
+              <div className="text-gray-400 text-sm space-y-1">
+                <p><span className="text-gray-500">Matična številka:</span> 6780962000</p>
+                <p><span className="text-gray-500">Davčna številka:</span> SI 44975465</p>
+              </div>
+            </div>
+            <div className="lg:col-span-2">
+              <h5 className="text-white text-xs font-bold uppercase tracking-wider mb-3">Bančni računi (TRR)</h5>
+              <div className="text-gray-400 text-sm flex flex-col sm:flex-row gap-6">
+                <div>
+                  <span className="block text-gray-300 font-medium tracking-wide">SI56 1010 0005 5747 350</span>
+                  <span className="text-gray-500 text-xs">Banka Intesa Sanpaolo d.d.</span>
+                </div>
+                <div>
+                  <span className="block text-gray-300 font-medium tracking-wide">SI56 2900 0005 1795 723</span>
+                  <span className="text-gray-500 text-xs">UNICREDIT BANKA SLOVENIJA d.d.</span>
+                </div>
+              </div>
             </div>
           </div>
 
