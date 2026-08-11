@@ -282,20 +282,20 @@ function App() {
             </div>
 
             {/* Service 2 */}
-            <div className="service-card bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-brand-light rounded-xl flex items-center justify-center mb-6">
-                <Users className="text-brand-accent w-7 h-7" />
+            <div className="service-card bg-brand-accent rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                <Users className="text-white w-7 h-7" />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Kadrovske storitve</h4>
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <h4 className="text-xl font-bold text-white mb-3">Kadrovske storitve</h4>
+              <p className="text-white/90 leading-relaxed mb-6">
                 Celovito urejanje kadrovske administracije. Obračun plač, priprava pogodb o zaposlitvi, prijavljanje delavcev in vodenje potnih nalogov.
               </p>
               <ul className="space-y-2">
-                <li className="flex items-center text-sm text-gray-700">
-                  <CheckCircle2 className="text-brand-accent mr-2 w-4 h-4" /> Obračun plač in prispevkov
+                <li className="flex items-center text-sm text-white">
+                  <CheckCircle2 className="text-white/80 mr-2 w-4 h-4" /> Obračun plač in prispevkov
                 </li>
-                <li className="flex items-center text-sm text-gray-700">
-                  <CheckCircle2 className="text-brand-accent mr-2 w-4 h-4" /> Urejanje potnih nalogov
+                <li className="flex items-center text-sm text-white">
+                  <CheckCircle2 className="text-white/80 mr-2 w-4 h-4" /> Urejanje potnih nalogov
                 </li>
               </ul>
             </div>
@@ -307,14 +307,14 @@ function App() {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">Svetovanje & Ustanavljanje družb</h4>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Poleg poslovanja v Sloveniji vam preko naše poslovalnice v Umagu nudimo tudi poslovno svetovanje in virtualno pisarno na Hrvaškem.
+                Poleg poslovanja v Sloveniji vam preko naše poslovalnice v <strong>Umagu</strong> nudimo tudi poslovno svetovanje in virtualno pisarno na Hrvaškem.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center text-sm text-gray-700">
                   <CheckCircle2 className="text-brand-accent mr-2 w-4 h-4" /> Ustanavljanje družb (SLO in HR)
                 </li>
                 <li className="flex items-center text-sm text-gray-700">
-                  <CheckCircle2 className="text-brand-accent mr-2 w-4 h-4" /> Virtualna pisarna (Tudi v Umagu)
+                  <CheckCircle2 className="text-brand-accent mr-2 w-4 h-4" /> Virtualna pisarna (Tudi v <strong>Umagu</strong>)
                 </li>
               </ul>
             </div>
