@@ -18,28 +18,28 @@ export default function TrustLogos() {
   ];
 
   return (
-    <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-200/80" id="reference">
+    <section className="py-16 sm:py-20 bg-slate-50/80 border-y border-slate-200/80" id="reference">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-xs sm:text-sm font-semibold text-brand-accent tracking-wider uppercase mb-3">
           {t('navbar.references')}
         </p>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-primary tracking-tight mb-8 sm:mb-10">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-primary tracking-tight mb-10 sm:mb-12">
           {t('trust.title')}
         </h2>
 
-        {/* Responsive Logo Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 items-stretch">
+        {/* Responsive Logo Grid with full colors & enlarged dimensions */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 lg:gap-6 items-stretch">
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="group bg-white border border-slate-200/90 rounded-xl p-3 sm:p-4 h-24 sm:h-28 flex items-center justify-center shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all duration-300 transform hover:-translate-y-0.5"
+              className="group bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 h-28 sm:h-32 lg:h-36 flex items-center justify-center shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 transform hover:-translate-y-1"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
                 title={partner.name}
                 loading="lazy"
-                className="max-h-12 sm:max-h-14 max-w-[85%] w-auto object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                className="max-h-16 sm:max-h-20 lg:max-h-20 max-w-[90%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
           ))}
